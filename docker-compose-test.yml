@@ -5,10 +5,10 @@ services:
     ports:
       - 5433:5432 # container:host
     env_file:
-      - .env
+      - .env.test
 
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -q -d mydb -U postgres"]
+      test: ["CMD-SHELL", "pg_isready -q -d tests  -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5 
@@ -20,7 +20,7 @@ services:
     ports:
       - 5000:5000
     env_file:
-      - .env
+      - .env.test
     depends_on:
       postgres:
         condition: service_healthy
